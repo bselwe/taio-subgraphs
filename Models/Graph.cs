@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace TAiO.Subgraphs
+namespace TAiO.Subgraphs.Models
 {
     public class Graph<T>
     {

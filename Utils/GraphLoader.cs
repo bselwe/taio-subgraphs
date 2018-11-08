@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TAiO.Subgraphs.Models;
 
-namespace TAiO.Subgraphs
+namespace TAiO.Subgraphs.Utils
 {
     public class GraphLoader
     {

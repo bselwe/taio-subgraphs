@@ -1,4 +1,7 @@
 ﻿using System;
+using TAiO.Subgraphs.Algorithms;
+using TAiO.Subgraphs.Models;
+using TAiO.Subgraphs.Utils;
 
 namespace TAiO.Subgraphs
 {
@@ -14,8 +17,11 @@ namespace TAiO.Subgraphs
                 return;
             }
 
-            var firstGraph = GraphLoader.FromCSV(args[0]);
-            var secondGraph = GraphLoader.FromCSV(args[1]);
+            var G = GraphLoader.FromCSV(args[0]);
+            var H = GraphLoader.FromCSV(args[1]);
+            var modularGraph = ModularGraph.Create(G, H);
+
+            Exact.Run(G, H, modularGraph);
         }
     }
 }
