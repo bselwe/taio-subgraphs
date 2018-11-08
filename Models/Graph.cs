@@ -7,9 +7,12 @@ namespace TAiO.Subgraphs.Models
     public class Graph<T>
     {
         public Dictionary<T, HashSet<T>> AdjacencyList { get; } = new Dictionary<T, HashSet<T>>();
+        public HashSet<T> Vertices { get; private set; }
 
         public Graph(IEnumerable<T> vertices, IEnumerable<Tuple<T, T>> edges) 
         {
+            Vertices = new HashSet<T>(vertices); 
+
             foreach(var vertex in vertices)
                 AddVertex(vertex);
 
