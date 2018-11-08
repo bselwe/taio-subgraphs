@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/TAiO.Subgraphs.dll",
-            "args": [],
+            "args": ["Data/Circles-of-5-and-6-vertices-1.csv", "Data/Circles-of-5-and-6-vertices-2.csv"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false,
