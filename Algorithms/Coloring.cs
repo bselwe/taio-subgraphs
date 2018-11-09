@@ -21,7 +21,7 @@ namespace TAiO.Subgraphs.Algorithms
                     var queue = new Queue<T>();
                     queue.Enqueue(start);
 
-                    while (queue.Count > 0) 
+                    while (queue.Any()) 
                     {
                         var vertex = queue.Dequeue();
 
@@ -43,13 +43,10 @@ namespace TAiO.Subgraphs.Algorithms
                                 colorUsedByNeighbors[vertexColoring[neighbor]] = true;
                         }
 
-                        var color = 0;
-                        for (int i = 0; i < colorUsedByNeighbors.Length; i++)
-                        {
-                            if (!colorUsedByNeighbors[i])
-                                break;
-                            color = i + 1;                            
-                        }
+                        int color;
+                        for (color = 0; color < colorUsedByNeighbors.Length; color++)
+                            if (!colorUsedByNeighbors[color])
+                                break;           
 
                         if (!colors.ContainsKey(color))
                             colors[color] = new HashSet<T>();

@@ -230,3 +230,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Custom
+exact.csv
+approximate.csv
