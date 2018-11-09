@@ -31,7 +31,7 @@ namespace TAiO.Subgraphs.Algorithms
                         visited.Add(vertex);
                         
                         var colorUsedByNeighbors = new bool[colors.Count];
-                        foreach (var neighbor in G.AdjacencyList[vertex])
+                        foreach (var neighbor in G.Neighbors[vertex])
                         {
                             if (!verticesToColor.Contains(neighbor))
                                 continue;

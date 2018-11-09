@@ -15,23 +15,23 @@ namespace TAiO.Subgraphs.Algorithms
         private Set incumbent;
         private Graph G1;
         private Graph G2;
-        private ModularGraph modularGraph;
+        private ModularGraph G;
 
-        public Exact(Graph G1, Graph G2, ModularGraph modularGraph)
+        public Exact(Graph G1, Graph G2, ModularGraph G)
         {
             this.G1 = G1;
             this.G2 = G2;
-            this.modularGraph = modularGraph;
+            this.G = G;
         }
 
         public Set Run()
         {
-            incumbent = new Set();
-            Search(modularGraph, Sets.Empty(), Sets.Empty(), modularGraph.Vertices);
+            incumbent = Sets.Empty();
+            Search(Sets.Empty(), Sets.Empty(), G.Vertices);
             return incumbent;
         }
 
-        public void Search(ModularGraph G, Set solution, Set connected, Set remaining)
+        private void Search(Set solution, Set connected, Set remaining)
         {
             var remainingExceptConnected = remaining.Except(connected).ToHashSet();
             var remainingIntersectConnected = remaining.Intersect(connected).ToHashSet();
@@ -58,13 +58,13 @@ namespace TAiO.Subgraphs.Algorithms
                         incumbent = solutionPrim.Copy();
 
                     var connectedPrim = connected.Concat(G.Vertices
-                        .Where(w => G1.AdjacencyList[v.Item1].Contains(w.Item1)))
+                        .Where(w => G1.Neighbors[v.Item1].Contains(w.Item1)))
                         .ToHashSet();
 
-                    var remainingPrim = remaining.Intersect(G.AdjacencyList[v]).ToHashSet();
+                    var remainingPrim = remaining.Intersect(G.Neighbors[v]).ToHashSet();
 
                     if (remainingPrim.Any())
-                        Search(G, solutionPrim, connectedPrim, remainingPrim);
+                        Search(solutionPrim, connectedPrim, remainingPrim);
                 }
 
                 colorClasses.Remove(lastColorClass);

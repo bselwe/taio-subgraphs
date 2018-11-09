@@ -6,7 +6,7 @@ namespace TAiO.Subgraphs.Models
 {
     public class Graph<T>
     {
-        public Dictionary<T, HashSet<T>> AdjacencyList { get; } = new Dictionary<T, HashSet<T>>();
+        public Dictionary<T, HashSet<T>> Neighbors { get; } = new Dictionary<T, HashSet<T>>();
         public HashSet<T> Vertices { get; private set; }
 
         public Graph(IEnumerable<T> vertices, IEnumerable<Tuple<T, T>> edges) 
@@ -22,15 +22,15 @@ namespace TAiO.Subgraphs.Models
 
         public void AddVertex(T vertex) 
         {
-            AdjacencyList[vertex] = new HashSet<T>();
+            Neighbors[vertex] = new HashSet<T>();
         }
 
         public void AddEdge(Tuple<T, T> edge) 
         {
-            if (AdjacencyList.ContainsKey(edge.Item1) && AdjacencyList.ContainsKey(edge.Item2)) 
+            if (Neighbors.ContainsKey(edge.Item1) && Neighbors.ContainsKey(edge.Item2)) 
             {
-                AdjacencyList[edge.Item1].Add(edge.Item2);
-                AdjacencyList[edge.Item2].Add(edge.Item1);
+                Neighbors[edge.Item1].Add(edge.Item2);
+                Neighbors[edge.Item2].Add(edge.Item1);
             }
         }
     }

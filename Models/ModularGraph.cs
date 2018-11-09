@@ -17,8 +17,8 @@ namespace TAiO.Subgraphs.Models
             var vertices = new List<Vertex>();
             var edges = new List<Tuple<Vertex, Vertex>>();
 
-            for (int i = 0; i < G.AdjacencyList.Count; i++)
-                for (int j = 0; j < H.AdjacencyList.Count; j++)
+            for (int i = 0; i < G.Neighbors.Count; i++)
+                for (int j = 0; j < H.Neighbors.Count; j++)
                     vertices.Add(new Vertex(i, j));
 
             for (int i = 0; i < vertices.Count; i++)
@@ -41,12 +41,12 @@ namespace TAiO.Subgraphs.Models
                         continue;
 
                     var adjacentCondition = 
-                        G.AdjacencyList[u].Contains(uPrim) && 
-                        H.AdjacencyList[v].Contains(vPrim);
+                        G.Neighbors[u].Contains(uPrim) && 
+                        H.Neighbors[v].Contains(vPrim);
 
                     var nonAdjacentCondition =
-                        !G.AdjacencyList[u].Contains(uPrim) &&
-                        !H.AdjacencyList[v].Contains(vPrim);
+                        !G.Neighbors[u].Contains(uPrim) &&
+                        !H.Neighbors[v].Contains(vPrim);
 
                     if (adjacentCondition || nonAdjacentCondition)
                         edges.Add(new Tuple<Vertex, Vertex>(firstVertex, secondVertex)); 

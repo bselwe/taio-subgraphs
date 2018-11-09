@@ -22,8 +22,10 @@ namespace TAiO.Subgraphs
             var modularGraph = ModularGraph.Create(G, H);
 
             var exactResult = new Exact(G, H, modularGraph).Run();
+            var approximateResult = new Approximate(G, H, modularGraph).Run();
 
             GraphLoader.ToCSV(exactResult, "Data/exact.csv");
+            GraphLoader.ToCSV(approximateResult, "Data/approximate.csv");
         }
     }
 }
