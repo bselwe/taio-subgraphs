@@ -14,9 +14,9 @@ namespace TAiO.Subgraphs.Utils
     public class ComplexityChecker
     {
         private readonly string complexityDirectory = "Complexity";
-        private readonly string complexityFile = "Complexity/complexity.csv";
 
         private readonly string examplesDirectory; 
+        private readonly string examplesName;
         private readonly bool exact;
         private int examplesCount;
 
@@ -24,6 +24,7 @@ namespace TAiO.Subgraphs.Utils
 
         public ComplexityChecker(string examplesName, bool exact)
         {
+            this.examplesName = examplesName;
             this.examplesDirectory = $"{complexityDirectory}/{examplesName}"; 
             this.exact = exact;
         }
@@ -85,7 +86,7 @@ namespace TAiO.Subgraphs.Utils
             if (!Directory.Exists(examplesDirectory))
                 throw new DirectoryNotFoundException($"File '{examplesDirectory}' does not exist.");
 
-            outFile = File.CreateText(complexityFile);
+            outFile = File.CreateText($"{complexityDirectory}/{examplesName}.csv");
         }
 
         private void Dispose()
