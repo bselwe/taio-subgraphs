@@ -59,9 +59,9 @@ namespace TAiO.Subgraphs.Utils
         {
             var G = GraphLoader.FromCSV(pathG);
             var H = GraphLoader.FromCSV(pathH);
-            var modularGraph = ModularGraph.Create(G, H);
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
+            var modularGraph = ModularGraph.Create(G, H);
             if (this.exact)
                 new Exact(G, H, modularGraph).Run();
             else
