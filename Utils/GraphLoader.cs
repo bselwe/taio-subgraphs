@@ -55,6 +55,11 @@ namespace TAiO.Subgraphs.Utils
 
         public static void ToCSV(Set matching, string path)
         {
+            var fileDirectory = Path.GetDirectoryName(path);
+
+            if (!Directory.Exists(fileDirectory))
+                Directory.CreateDirectory(fileDirectory);
+
             var file = File.Create(path);
 
             using (var writer = new StreamWriter(file))
